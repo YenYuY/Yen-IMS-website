@@ -1,44 +1,54 @@
-<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1280" height="760" rx="28" fill="#F6F8FC"/>
-  <text x="76" y="92" fill="#183153" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="700">Core Module Flow</text>
-  <text x="76" y="132" fill="#5F708A" font-size="22" font-family="Arial, Helvetica, sans-serif">The first release covers account control, item master, stock flow and reporting.</text>
-  <rect x="76" y="192" width="234" height="120" rx="24" fill="#112543"/>
-  <text x="112" y="246" fill="#FFFFFF" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Auth &amp; Roles</text>
-  <text x="112" y="284" fill="#D8E0EE" font-size="20" font-family="Arial, Helvetica, sans-serif">Login, reset password,</text>
-  <text x="112" y="312" fill="#D8E0EE" font-size="20" font-family="Arial, Helvetica, sans-serif">forced change, fine-grained perms</text>
-  <rect x="382" y="192" width="234" height="120" rx="24" fill="#FFF1EA"/>
-  <text x="420" y="246" fill="#A6522C" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Product Master</text>
-  <text x="420" y="284" fill="#7F5B4A" font-size="20" font-family="Arial, Helvetica, sans-serif">SKU, supplier, barcode,</text>
-  <text x="420" y="312" fill="#7F5B4A" font-size="20" font-family="Arial, Helvetica, sans-serif">batch, serial, expiry</text>
-  <rect x="688" y="192" width="234" height="120" rx="24" fill="#EEF5FF"/>
-  <text x="728" y="246" fill="#335E96" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Warehouse</text>
-  <text x="728" y="284" fill="#5678A5" font-size="20" font-family="Arial, Helvetica, sans-serif">Multi-warehouse</text>
-  <text x="728" y="312" fill="#5678A5" font-size="20" font-family="Arial, Helvetica, sans-serif">and location control</text>
-  <rect x="994" y="192" width="210" height="120" rx="24" fill="#ECFBF3"/>
-  <text x="1028" y="246" fill="#28724A" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Partners</text>
-  <text x="1028" y="284" fill="#4F7A64" font-size="20" font-family="Arial, Helvetica, sans-serif">Suppliers and</text>
-  <text x="1028" y="312" fill="#4F7A64" font-size="20" font-family="Arial, Helvetica, sans-serif">customers</text>
-  <rect x="200" y="416" width="280" height="140" rx="24" fill="#FFFFFF" stroke="#E6ECF5" stroke-width="2"/>
-  <text x="238" y="470" fill="#183153" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Documents</text>
-  <text x="238" y="510" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">Purchase / Sales / Return</text>
-  <text x="238" y="540" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">Complete -> post inventory</text>
-  <rect x="520" y="416" width="280" height="140" rx="24" fill="#FFFFFF" stroke="#E6ECF5" stroke-width="2"/>
-  <text x="558" y="470" fill="#183153" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Stocktake</text>
-  <text x="558" y="510" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">Counted quantity</text>
-  <text x="558" y="540" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">Auto difference adjustment</text>
-  <rect x="840" y="416" width="280" height="140" rx="24" fill="#FFFFFF" stroke="#E6ECF5" stroke-width="2"/>
-  <text x="878" y="470" fill="#183153" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Reports &amp; Audit</text>
-  <text x="878" y="510" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">CSV export</text>
-  <text x="878" y="540" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">Operation traceability</text>
-  <path d="M310 252H382" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <path d="M616 252H688" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <path d="M922 252H994" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <path d="M499 312L368 416" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <path d="M802 312L979 416" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <path d="M805 312L667 416" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <path d="M1100 312L988 416" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <path d="M480 486H520" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <path d="M800 486H840" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
-  <rect x="76" y="618" width="1128" height="78" rx="20" fill="#112543"/>
-  <text x="118" y="666" fill="#FFFFFF" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Single-file Python backend + SQLite + vanilla JS admin UI, ready for internal deployment and future PostgreSQL migration.</text>
+<svg width="1280" height="760" viewBox="0 0 1280 760" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="760" fill="#0F1722"/>
+  <rect x="36" y="36" width="1208" height="688" rx="30" fill="#F4F7FB"/>
+
+  <text x="76" y="104" fill="#183153" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="700">Yen IMS Module Flow</text>
+  <text x="76" y="144" fill="#667892" font-size="22" font-family="Arial, Helvetica, sans-serif">A lightweight internal inventory system from account control to stock traceability.</text>
+
+  <rect x="76" y="198" width="220" height="108" rx="22" fill="#132844"/>
+  <text x="186" y="244" text-anchor="middle" fill="#FFFFFF" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700">Login / Security</text>
+  <text x="186" y="278" text-anchor="middle" fill="#D7E0EE" font-size="18" font-family="Arial, Helvetica, sans-serif">Session timeout</text>
+
+  <rect x="342" y="198" width="220" height="108" rx="22" fill="#FFF1E8"/>
+  <text x="452" y="244" text-anchor="middle" fill="#A55A30" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700">Users / Roles</text>
+  <text x="452" y="278" text-anchor="middle" fill="#8A6A5A" font-size="18" font-family="Arial, Helvetica, sans-serif">Reset password / permissions</text>
+
+  <rect x="608" y="198" width="220" height="108" rx="22" fill="#EDF4FF"/>
+  <text x="718" y="244" text-anchor="middle" fill="#2E5C98" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700">Products</text>
+  <text x="718" y="278" text-anchor="middle" fill="#647A9E" font-size="18" font-family="Arial, Helvetica, sans-serif">Barcode / batch / expiry</text>
+
+  <rect x="874" y="198" width="330" height="108" rx="22" fill="#EAF8F0"/>
+  <text x="1039" y="244" text-anchor="middle" fill="#2B7A52" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700">Partners / Warehouses / Locations</text>
+  <text x="1039" y="278" text-anchor="middle" fill="#5C7E6A" font-size="18" font-family="Arial, Helvetica, sans-serif">Suppliers, customers and stock positions</text>
+
+  <line x1="296" y1="252" x2="342" y2="252" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+  <line x1="562" y1="252" x2="608" y2="252" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+  <line x1="828" y1="252" x2="874" y2="252" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="118" y="404" width="292" height="136" rx="24" fill="#FFFFFF" stroke="#E3EAF4" stroke-width="2"/>
+  <text x="154" y="458" fill="#183153" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Document Engine</text>
+  <text x="154" y="496" fill="#6D7F98" font-size="21" font-family="Arial, Helvetica, sans-serif">Purchase order</text>
+  <text x="154" y="526" fill="#6D7F98" font-size="21" font-family="Arial, Helvetica, sans-serif">Sales order / Return order</text>
+
+  <rect x="494" y="404" width="292" height="136" rx="24" fill="#FFFFFF" stroke="#E3EAF4" stroke-width="2"/>
+  <text x="530" y="458" fill="#183153" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Inventory Posting</text>
+  <text x="530" y="496" fill="#6D7F98" font-size="21" font-family="Arial, Helvetica, sans-serif">Stock in / Stock out</text>
+  <text x="530" y="526" fill="#6D7F98" font-size="21" font-family="Arial, Helvetica, sans-serif">Trace movement history</text>
+
+  <rect x="870" y="404" width="292" height="136" rx="24" fill="#FFFFFF" stroke="#E3EAF4" stroke-width="2"/>
+  <text x="906" y="458" fill="#183153" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Stocktake / Audit</text>
+  <text x="906" y="496" fill="#6D7F98" font-size="21" font-family="Arial, Helvetica, sans-serif">Counted quantity</text>
+  <text x="906" y="526" fill="#6D7F98" font-size="21" font-family="Arial, Helvetica, sans-serif">Difference adjustment / logs</text>
+
+  <line x1="410" y1="472" x2="494" y2="472" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+  <line x1="786" y1="472" x2="870" y2="472" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+
+  <line x1="718" y1="306" x2="718" y2="356" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+  <line x1="1039" y1="306" x2="1039" y2="356" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+  <line x1="718" y1="356" x2="264" y2="404" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+  <line x1="1039" y1="356" x2="640" y2="404" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+  <line x1="1039" y1="356" x2="1016" y2="404" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="118" y="592" width="1044" height="82" rx="22" fill="#132844"/>
+  <text x="640" y="642" text-anchor="middle" fill="#FFFFFF" font-size="25" font-family="Arial, Helvetica, sans-serif" font-weight="700">Single-file Python backend + SQLite + Vanilla JS admin UI, ready for internal deployment and future expansion.</text>
 </svg>
