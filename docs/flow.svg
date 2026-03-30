@@ -17,9 +17,10 @@
   <text x="718" y="244" text-anchor="middle" fill="#2E5C98" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700">Products</text>
   <text x="718" y="278" text-anchor="middle" fill="#647A9E" font-size="18" font-family="Arial, Helvetica, sans-serif">Barcode / batch / expiry</text>
 
-  <rect x="874" y="198" width="330" height="108" rx="22" fill="#EAF8F0"/>
-  <text x="1039" y="244" text-anchor="middle" fill="#2B7A52" font-size="27" font-family="Arial, Helvetica, sans-serif" font-weight="700">Partners / Warehouses / Locations</text>
-  <text x="1039" y="278" text-anchor="middle" fill="#5C7E6A" font-size="18" font-family="Arial, Helvetica, sans-serif">Suppliers, customers and stock positions</text>
+  <rect x="874" y="190" width="330" height="124" rx="22" fill="#EAF8F0"/>
+  <text x="1039" y="234" text-anchor="middle" fill="#2B7A52" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Partners / Warehouses</text>
+  <text x="1039" y="264" text-anchor="middle" fill="#2B7A52" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">/ Locations</text>
+  <text x="1039" y="292" text-anchor="middle" fill="#5C7E6A" font-size="18" font-family="Arial, Helvetica, sans-serif">Suppliers, customers and stock positions</text>
 
   <line x1="296" y1="252" x2="342" y2="252" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
   <line x1="562" y1="252" x2="608" y2="252" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
@@ -44,11 +45,12 @@
   <line x1="786" y1="472" x2="870" y2="472" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
 
   <line x1="718" y1="306" x2="718" y2="356" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
-  <line x1="1039" y1="306" x2="1039" y2="356" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
+  <line x1="1039" y1="314" x2="1039" y2="356" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
   <line x1="718" y1="356" x2="264" y2="404" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
   <line x1="1039" y1="356" x2="640" y2="404" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
   <line x1="1039" y1="356" x2="1016" y2="404" stroke="#C8D5E7" stroke-width="8" stroke-linecap="round"/>
 
-  <rect x="118" y="592" width="1044" height="82" rx="22" fill="#132844"/>
-  <text x="640" y="642" text-anchor="middle" fill="#FFFFFF" font-size="25" font-family="Arial, Helvetica, sans-serif" font-weight="700">Single-file Python backend + SQLite + Vanilla JS admin UI, ready for internal deployment and future expansion.</text>
+  <rect x="118" y="584" width="1044" height="96" rx="22" fill="#132844"/>
+  <text x="640" y="626" text-anchor="middle" fill="#FFFFFF" font-size="23" font-family="Arial, Helvetica, sans-serif" font-weight="700">Single-file Python backend + SQLite + Vanilla JS admin UI</text>
+  <text x="640" y="656" text-anchor="middle" fill="#D9E4F2" font-size="20" font-family="Arial, Helvetica, sans-serif" font-weight="700">Ready for internal deployment and future expansion.</text>
 </svg>
