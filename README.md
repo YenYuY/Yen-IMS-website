@@ -82,12 +82,18 @@ flowchart LR
 python3 app.py
 ```
 
-啟動後開啟 [http://127.0.0.1:8000](http://127.0.0.1:8000)
+啟動後開啟 [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
 如果要改 port：
 
 ```bash
-PORT=8080 python3 app.py
+PORT=9000 python3 app.py
+```
+
+如果要在內網提供其他電腦存取：
+
+```bash
+HOST=0.0.0.0 PORT=8080 python3 app.py
 ```
 
 ### 2. 預設管理員帳號
@@ -100,6 +106,45 @@ PORT=8080 python3 app.py
 ### 3. 系統資料位置
 
 - SQLite 資料庫：`data/inventory.db`
+
+## 內網部署建議
+
+### 建議最少設定
+
+```bash
+HOST=0.0.0.0 \
+PORT=8080 \
+ALLOWED_NETWORKS=127.0.0.1/32,192.168.1.0/24 \
+TRUSTED_HOSTS=localhost,192.168.1.50,ims-server.local \
+python3 app.py
+```
+
+說明：
+
+- `HOST=0.0.0.0`：讓內網其他電腦可以連進來
+- `ALLOWED_NETWORKS`：只允許指定內網網段連線
+- `TRUSTED_HOSTS`：只允許指定網址 / IP 當作 `Host`，降低 DNS rebinding 風險
+
+### 已加入的內網安全保護
+
+- `Host` 驗證
+- 來源 IP 網段限制
+- `Origin / Referer` 同源檢查，阻擋跨來源 POST
+- 登入失敗節流，預設 10 分鐘內最多 5 次
+- `HttpOnly` session cookie
+- 安全標頭：`CSP`、`X-Frame-Options`、`X-Content-Type-Options`、`Referrer-Policy`
+- API 回應預設 `Cache-Control: no-store`
+
+### HTTPS 建議
+
+這個專案本身仍是 `HTTP` 伺服器。  
+如果要在公司內網正式使用，建議前面加 `Nginx` 或 `Caddy` 做 `HTTPS` 反向代理，再啟用：
+
+```bash
+TRUST_PROXY_HEADERS=1 FORCE_SECURE_COOKIES=1 python3 app.py
+```
+
+這樣在代理層用 TLS，加上後端 session cookie 也會自動帶 `Secure`。
 
 ## 權限設計
 

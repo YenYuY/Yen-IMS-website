@@ -1,6 +1,7 @@
 import csv
 import hashlib
 import hmac
+import ipaddress
 import io
 import json
 import mimetypes
@@ -11,7 +12,7 @@ from datetime import datetime, timedelta, timezone
 from http import cookies
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlparse, urlsplit
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -22,6 +23,19 @@ SESSION_COOKIE = "inventory_session"
 SESSION_MINUTES = 30
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "Admin@123456"
+SERVER_HOST = os.environ.get("HOST", "0.0.0.0")
+SERVER_PORT = int(os.environ.get("PORT", "8080"))
+TRUST_PROXY_HEADERS_RAW = os.environ.get("TRUST_PROXY_HEADERS", "0")
+FORCE_SECURE_COOKIES_RAW = os.environ.get("FORCE_SECURE_COOKIES", "0")
+MAX_JSON_BYTES = int(os.environ.get("MAX_JSON_BYTES", "1048576"))
+LOGIN_ATTEMPT_LIMIT = max(int(os.environ.get("LOGIN_ATTEMPT_LIMIT", "5")), 1)
+LOGIN_ATTEMPT_WINDOW_MINUTES = max(int(os.environ.get("LOGIN_ATTEMPT_WINDOW_MINUTES", "10")), 1)
+ALLOWED_NETWORKS_RAW = os.environ.get(
+    "ALLOWED_NETWORKS",
+    "127.0.0.1/32,::1/128,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16",
+)
+TRUSTED_HOSTS_RAW = os.environ.get("TRUSTED_HOSTS", "")
+FAILED_LOGIN_ATTEMPTS = {}
 
 ALL_PERMISSIONS = {
     "manage_users",
@@ -131,6 +145,82 @@ def parse_permission_list(value):
     else:
         permissions = []
     return sorted({item for item in permissions if item in ALL_PERMISSIONS})
+
+
+TRUST_PROXY_HEADERS = parse_bool(TRUST_PROXY_HEADERS_RAW)
+FORCE_SECURE_COOKIES = parse_bool(FORCE_SECURE_COOKIES_RAW)
+
+
+def parse_networks(raw_value):
+    networks = []
+    for part in str(raw_value).split(","):
+        candidate = part.strip()
+        if not candidate:
+            continue
+        networks.append(ipaddress.ip_network(candidate, strict=False))
+    return tuple(networks)
+
+
+def parse_trusted_hosts(raw_value):
+    hosts = set()
+    for part in str(raw_value).split(","):
+        candidate = part.strip().lower()
+        if candidate:
+            hosts.add(candidate)
+    return hosts
+
+
+def is_allowed_host_name(hostname):
+    candidate = (hostname or "").strip().lower()
+    if not candidate:
+        return False
+    if candidate in TRUSTED_HOSTS:
+        return True
+    if candidate in {"localhost", "127.0.0.1", "::1"}:
+        return True
+    if candidate.endswith(".local") or "." not in candidate:
+        return True
+    try:
+        ip = ipaddress.ip_address(candidate)
+        return ip.is_private or ip.is_loopback
+    except ValueError:
+        return False
+
+
+def default_port_for_scheme(scheme):
+    return 443 if scheme == "https" else 80
+
+
+def cleanup_failed_logins(now_ts):
+    expired_keys = [
+        key
+        for key, item in FAILED_LOGIN_ATTEMPTS.items()
+        if item["expires_at"] <= now_ts
+    ]
+    for key in expired_keys:
+        FAILED_LOGIN_ATTEMPTS.pop(key, None)
+
+
+def register_failed_login(login_key):
+    now_ts = datetime.now(timezone.utc).timestamp()
+    cleanup_failed_logins(now_ts)
+    entry = FAILED_LOGIN_ATTEMPTS.get(login_key)
+    expires_at = now_ts + LOGIN_ATTEMPT_WINDOW_MINUTES * 60
+    if entry and entry["expires_at"] > now_ts:
+        entry["count"] += 1
+        entry["expires_at"] = expires_at
+    else:
+        FAILED_LOGIN_ATTEMPTS[login_key] = {"count": 1, "expires_at": expires_at}
+
+
+def clear_failed_login(login_key):
+    FAILED_LOGIN_ATTEMPTS.pop(login_key, None)
+
+
+ALLOWED_NETWORKS = parse_networks(ALLOWED_NETWORKS_RAW)
+TRUSTED_HOSTS = parse_trusted_hosts(TRUSTED_HOSTS_RAW)
+if SERVER_HOST not in {"", "0.0.0.0", "::"}:
+    TRUSTED_HOSTS.add(SERVER_HOST.lower())
 
 
 def get_db():
@@ -645,8 +735,97 @@ def apply_stock_transaction(
 class InventoryHandler(BaseHTTPRequestHandler):
     server_version = "InventorySystem/2.0"
 
+    def request_is_secure(self):
+        if FORCE_SECURE_COOKIES:
+            return True
+        if not TRUST_PROXY_HEADERS:
+            return False
+        forwarded_proto = self.headers.get("X-Forwarded-Proto", "").split(",")[0].strip().lower()
+        return forwarded_proto == "https"
+
+    def get_request_host(self):
+        raw_host = self.headers.get("Host", "").strip()
+        if not raw_host:
+            return ""
+        return urlsplit(f"http://{raw_host}").hostname or ""
+
+    def get_request_port(self):
+        raw_host = self.headers.get("Host", "").strip()
+        if not raw_host:
+            return default_port_for_scheme("https" if self.request_is_secure() else "http")
+        parsed = urlsplit(f"http://{raw_host}")
+        return parsed.port or default_port_for_scheme("https" if self.request_is_secure() else "http")
+
+    def get_client_ip(self):
+        client_ip = self.client_address[0]
+        if TRUST_PROXY_HEADERS:
+            forwarded_for = self.headers.get("X-Forwarded-For", "").split(",")[0].strip()
+            if forwarded_for:
+                client_ip = forwarded_for
+        return client_ip
+
+    def build_cookie_header(self, name, value, max_age=None):
+        parts = [f"{name}={value}", "Path=/", "HttpOnly", "SameSite=Lax"]
+        if max_age is not None:
+            parts.append(f"Max-Age={max_age}")
+        if self.request_is_secure():
+            parts.append("Secure")
+        return "; ".join(parts)
+
+    def add_common_headers(self, is_api=False):
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "no-referrer")
+        self.send_header("Cross-Origin-Resource-Policy", "same-origin")
+        self.send_header(
+            "Content-Security-Policy",
+            "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; "
+            "connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; "
+            "frame-ancestors 'none'; form-action 'self'",
+        )
+        if is_api:
+            self.send_header("Cache-Control", "no-store")
+
+    def is_client_allowed(self):
+        try:
+            client_ip = ipaddress.ip_address(self.get_client_ip())
+        except ValueError:
+            return False
+        return any(client_ip in network for network in ALLOWED_NETWORKS)
+
+    def is_same_origin_request(self):
+        request_host = self.get_request_host()
+        request_port = self.get_request_port()
+        for header_name in ("Origin", "Referer"):
+            value = self.headers.get(header_name, "").strip()
+            if not value:
+                continue
+            parsed = urlsplit(value)
+            origin_host = parsed.hostname or ""
+            if origin_host != request_host:
+                return False
+            origin_port = parsed.port or default_port_for_scheme(parsed.scheme or ("https" if self.request_is_secure() else "http"))
+            if origin_port != request_port:
+                return False
+        return True
+
+    def reject_disallowed_request(self, method, path):
+        host = self.get_request_host()
+        if not is_allowed_host_name(host):
+            self.send_json({"error": "不允許的 Host 來源"}, status=400)
+            return True
+        if not self.is_client_allowed():
+            self.send_json({"error": "來源 IP 不在允許網段中"}, status=403)
+            return True
+        if method != "GET" and path.startswith("/api/") and not self.is_same_origin_request():
+            self.send_json({"error": "跨來源請求已被拒絕"}, status=403)
+            return True
+        return False
+
     def do_GET(self):
         parsed = urlparse(self.path)
+        if self.reject_disallowed_request("GET", parsed.path):
+            return
         if parsed.path == "/":
             return self.serve_static("index.html")
         if parsed.path.startswith("/static/"):
@@ -673,6 +852,8 @@ class InventoryHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         parsed = urlparse(self.path)
+        if self.reject_disallowed_request("POST", parsed.path):
+            return
         routes = {
             "/api/login": self.handle_login,
             "/api/logout": self.handle_logout,
@@ -711,6 +892,7 @@ class InventoryHandler(BaseHTTPRequestHandler):
         content_type, _ = mimetypes.guess_type(str(safe_path))
         data = safe_path.read_bytes()
         self.send_response(200)
+        self.add_common_headers()
         self.send_header("Content-Type", content_type or "application/octet-stream")
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
@@ -718,6 +900,8 @@ class InventoryHandler(BaseHTTPRequestHandler):
 
     def parse_json_body(self):
         length = int(self.headers.get("Content-Length", 0))
+        if length > MAX_JSON_BYTES:
+            raise ValueError("請求資料過大")
         raw_body = self.rfile.read(length) if length else b"{}"
         try:
             return json.loads(raw_body.decode("utf-8"))
@@ -727,6 +911,7 @@ class InventoryHandler(BaseHTTPRequestHandler):
     def send_json(self, payload, status=200, extra_headers=None):
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
+        self.add_common_headers(is_api=True)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         if extra_headers:
@@ -743,6 +928,7 @@ class InventoryHandler(BaseHTTPRequestHandler):
             writer.writerow(row)
         data = output.getvalue().encode("utf-8-sig")
         self.send_response(200)
+        self.add_common_headers(is_api=True)
         self.send_header("Content-Type", "text/csv; charset=utf-8")
         self.send_header("Content-Length", str(len(data)))
         self.send_header("Content-Disposition", f'attachment; filename="{filename}"')
@@ -812,14 +998,26 @@ class InventoryHandler(BaseHTTPRequestHandler):
         if not username or not password:
             return self.send_json({"error": "請輸入帳號與密碼"}, status=400)
 
+        login_key = f"{self.get_client_ip()}:{username.lower()}"
+        now_ts = datetime.now(timezone.utc).timestamp()
+        cleanup_failed_logins(now_ts)
+        failed_entry = FAILED_LOGIN_ATTEMPTS.get(login_key)
+        if failed_entry and failed_entry["count"] >= LOGIN_ATTEMPT_LIMIT and failed_entry["expires_at"] > now_ts:
+            return self.send_json(
+                {"error": f"登入失敗次數過多，請 {LOGIN_ATTEMPT_WINDOW_MINUTES} 分鐘後再試"},
+                status=429,
+            )
+
         with get_db() as db:
             row = db.execute(
                 "SELECT * FROM users WHERE username = ?",
                 (username,),
             ).fetchone()
             if not row or row["status"] != "active":
+                register_failed_login(login_key)
                 return self.send_json({"error": "帳號或密碼錯誤"}, status=401)
             if not verify_password(password, row["password_salt"], row["password_hash"]):
+                register_failed_login(login_key)
                 return self.send_json({"error": "帳號或密碼錯誤"}, status=401)
 
             token = secrets.token_urlsafe(32)
@@ -829,7 +1027,8 @@ class InventoryHandler(BaseHTTPRequestHandler):
                 (token, row["id"], session_expiry_iso(), now_iso()),
             )
 
-        header = f"{SESSION_COOKIE}={token}; Path=/; HttpOnly; SameSite=Lax"
+        clear_failed_login(login_key)
+        header = self.build_cookie_header(SESSION_COOKIE, token)
         return self.send_json(
             {"message": "登入成功", "user": row_to_user(row)},
             extra_headers={"Set-Cookie": header},
@@ -842,7 +1041,7 @@ class InventoryHandler(BaseHTTPRequestHandler):
                 db.execute("DELETE FROM sessions WHERE token = ?", (token,))
         return self.send_json(
             {"message": "已登出"},
-            extra_headers={"Set-Cookie": f"{SESSION_COOKIE}=deleted; Path=/; Max-Age=0; HttpOnly; SameSite=Lax"},
+            extra_headers={"Set-Cookie": self.build_cookie_header(SESSION_COOKIE, "deleted", max_age=0)},
         )
 
     def handle_change_password(self):
@@ -885,7 +1084,7 @@ class InventoryHandler(BaseHTTPRequestHandler):
 
         return self.send_json(
             {"message": "密碼已更新，請重新登入"},
-            extra_headers={"Set-Cookie": f"{SESSION_COOKIE}=deleted; Path=/; Max-Age=0; HttpOnly; SameSite=Lax"},
+            extra_headers={"Set-Cookie": self.build_cookie_header(SESSION_COOKIE, "deleted", max_age=0)},
         )
 
     def handle_list_users(self):
@@ -2074,9 +2273,13 @@ class InventoryHandler(BaseHTTPRequestHandler):
 
 def run():
     init_db()
-    port = int(os.environ.get("PORT", "8000"))
-    server = ThreadingHTTPServer(("0.0.0.0", port), InventoryHandler)
-    print(f"Inventory system running at http://127.0.0.1:{port}")
+    server = ThreadingHTTPServer((SERVER_HOST, SERVER_PORT), InventoryHandler)
+    display_host = SERVER_HOST if SERVER_HOST not in {"0.0.0.0", "::"} else "localhost / 內網 IP"
+    print(f"Inventory system running at http://{display_host}:{SERVER_PORT}")
+    print(f"Allowed networks: {ALLOWED_NETWORKS_RAW}")
+    print(f"Trusted hosts: {TRUSTED_HOSTS_RAW or 'localhost, .local, private IP, intranet hostnames'}")
+    if TRUST_PROXY_HEADERS or FORCE_SECURE_COOKIES:
+        print("Reverse proxy mode: enabled")
     print(f"Default admin: {ADMIN_USERNAME} / {ADMIN_PASSWORD}")
     server.serve_forever()
 
