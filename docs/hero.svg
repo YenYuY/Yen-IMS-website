@@ -1,57 +1,61 @@
 <svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1280" height="720" fill="#0F1722"/>
-  <rect x="36" y="36" width="1208" height="648" rx="30" fill="#F3F6FB"/>
-  <rect x="64" y="64" width="1152" height="84" rx="22" fill="#132844"/>
-  <rect x="64" y="148" width="214" height="500" rx="0 0 22 22" fill="#1D365A"/>
-  <rect x="278" y="148" width="938" height="500" rx="0 0 22 0" fill="#FFFFFF"/>
+  <rect width="1280" height="720" fill="#F2F5FA"/>
+  <rect x="44" y="44" width="1192" height="632" rx="32" fill="#10233F"/>
 
-  <text x="98" y="115" fill="#FFFFFF" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">Yen IMS</text>
-  <text x="921" y="115" fill="#FFFFFF" font-size="21" font-family="Arial, Helvetica, sans-serif" font-weight="700">admin / 30 min idle timeout</text>
+  <rect x="78" y="82" width="456" height="556" rx="28" fill="#10233F"/>
+  <text x="92" y="124" fill="#FF8A57" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">YEN IMS</text>
+  <text x="92" y="206" fill="#FFFFFF" font-size="56" font-family="Arial, Helvetica, sans-serif" font-weight="700">Inventory</text>
+  <text x="92" y="268" fill="#FFFFFF" font-size="56" font-family="Arial, Helvetica, sans-serif" font-weight="700">Management</text>
+  <text x="92" y="330" fill="#FFFFFF" font-size="56" font-family="Arial, Helvetica, sans-serif" font-weight="700">System</text>
+  <text x="92" y="386" fill="#AAB8CC" font-size="24" font-family="Arial, Helvetica, sans-serif">Products, warehouses, stock flows,</text>
+  <text x="92" y="420" fill="#AAB8CC" font-size="24" font-family="Arial, Helvetica, sans-serif">audit logs and reports in one console.</text>
 
-  <rect x="92" y="184" width="158" height="50" rx="14" fill="#FF8450"/>
-  <text x="171" y="217" fill="#FFFFFF" font-size="20" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700">Dashboard</text>
-  <text x="92" y="292" fill="#D8E1F0" font-size="23" font-family="Arial, Helvetica, sans-serif" font-weight="700">Products</text>
-  <text x="92" y="352" fill="#D8E1F0" font-size="23" font-family="Arial, Helvetica, sans-serif" font-weight="700">Documents</text>
-  <text x="92" y="412" fill="#D8E1F0" font-size="23" font-family="Arial, Helvetica, sans-serif" font-weight="700">Warehouses</text>
-  <text x="92" y="472" fill="#D8E1F0" font-size="23" font-family="Arial, Helvetica, sans-serif" font-weight="700">Audit Logs</text>
-  <text x="92" y="532" fill="#D8E1F0" font-size="23" font-family="Arial, Helvetica, sans-serif" font-weight="700">Reports</text>
+  <rect x="92" y="474" width="170" height="54" rx="16" fill="#FF8A57"/>
+  <text x="177" y="509" text-anchor="middle" fill="#FFFFFF" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Admin Ready</text>
+  <rect x="278" y="474" width="196" height="54" rx="16" fill="#1D365A"/>
+  <text x="376" y="509" text-anchor="middle" fill="#DCE7F5" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">30 Min Timeout</text>
 
-  <text x="330" y="212" fill="#1C3154" font-size="38" font-family="Arial, Helvetica, sans-serif" font-weight="700">Inventory Management System</text>
-  <text x="330" y="250" fill="#6B7A90" font-size="21" font-family="Arial, Helvetica, sans-serif">Products, documents, partners, stocktakes and reports in one admin console.</text>
+  <rect x="92" y="566" width="126" height="36" rx="18" fill="#1D365A"/>
+  <text x="155" y="590" text-anchor="middle" fill="#DCE7F5" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="700">Roles</text>
+  <rect x="230" y="566" width="132" height="36" rx="18" fill="#1D365A"/>
+  <text x="296" y="590" text-anchor="middle" fill="#DCE7F5" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="700">Stocktake</text>
+  <rect x="374" y="566" width="130" height="36" rx="18" fill="#1D365A"/>
+  <text x="439" y="590" text-anchor="middle" fill="#DCE7F5" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="700">CSV Export</text>
 
-  <rect x="330" y="292" width="188" height="110" rx="20" fill="#FFF1E8"/>
-  <rect x="542" y="292" width="188" height="110" rx="20" fill="#EDF3FF"/>
-  <rect x="754" y="292" width="188" height="110" rx="20" fill="#EAF8F0"/>
-  <rect x="966" y="292" width="188" height="110" rx="20" fill="#FFF5D9"/>
+  <rect x="548" y="82" width="640" height="556" rx="28" fill="#EAF0F8"/>
+  <rect x="582" y="114" width="572" height="72" rx="20" fill="#132844"/>
+  <text x="618" y="158" fill="#FFFFFF" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Yen IMS Admin</text>
+  <text x="926" y="158" fill="#FFFFFF" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">admin / secure session</text>
 
-  <text x="360" y="334" fill="#96512E" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Products</text>
-  <text x="360" y="374" fill="#1C3154" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="700">128</text>
+  <rect x="582" y="200" width="182" height="404" rx="22" fill="#1D365A"/>
+  <rect x="604" y="230" width="138" height="46" rx="14" fill="#FF8A57"/>
+  <text x="673" y="260" text-anchor="middle" fill="#FFFFFF" font-size="20" font-family="Arial, Helvetica, sans-serif" font-weight="700">Dashboard</text>
+  <text x="616" y="334" fill="#DCE7F5" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Products</text>
+  <text x="616" y="390" fill="#DCE7F5" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Documents</text>
+  <text x="616" y="446" fill="#DCE7F5" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Warehouses</text>
+  <text x="616" y="502" fill="#DCE7F5" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Users</text>
+  <text x="616" y="558" fill="#DCE7F5" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Reports</text>
 
-  <text x="572" y="334" fill="#2E5C98" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Documents</text>
-  <text x="572" y="374" fill="#1C3154" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="700">42</text>
+  <text x="792" y="252" fill="#1D365A" font-size="36" font-family="Arial, Helvetica, sans-serif" font-weight="700">Operational Overview</text>
+  <text x="792" y="286" fill="#71829A" font-size="20" font-family="Arial, Helvetica, sans-serif">Track products, document flow and inventory status from one screen.</text>
 
-  <text x="784" y="334" fill="#2B7A52" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Warehouses</text>
-  <text x="784" y="374" fill="#1C3154" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="700">6</text>
+  <rect x="792" y="324" width="148" height="94" rx="20" fill="#FFF1E8"/>
+  <rect x="958" y="324" width="148" height="94" rx="20" fill="#EDF4FF"/>
+  <rect x="792" y="434" width="148" height="94" rx="20" fill="#EAF8F0"/>
+  <rect x="958" y="434" width="148" height="94" rx="20" fill="#FFF4D8"/>
 
-  <text x="996" y="334" fill="#9A7513" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">Low Stock</text>
-  <text x="996" y="374" fill="#1C3154" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="700">9</text>
+  <text x="816" y="358" fill="#9E592E" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Products</text>
+  <text x="816" y="397" fill="#1D365A" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">128</text>
+  <text x="982" y="358" fill="#2F5D9A" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Documents</text>
+  <text x="982" y="397" fill="#1D365A" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">42</text>
+  <text x="816" y="468" fill="#2B7A52" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Warehouses</text>
+  <text x="816" y="507" fill="#1D365A" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">6</text>
+  <text x="982" y="468" fill="#9A7513" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Low Stock</text>
+  <text x="982" y="507" fill="#1D365A" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">9</text>
 
-  <rect x="330" y="434" width="824" height="176" rx="22" fill="#FFFFFF" stroke="#E3EAF4" stroke-width="2"/>
-  <text x="360" y="476" fill="#1C3154" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Recent Inventory Activity</text>
-  <line x1="360" y1="502" x2="1122" y2="502" stroke="#E8EEF7" stroke-width="2"/>
+  <rect x="1124" y="324" width="30" height="204" rx="15" fill="#DCE5F2"/>
+  <rect x="1128" y="352" width="22" height="78" rx="11" fill="#FF8A57"/>
 
-  <text x="360" y="548" fill="#72829A" font-size="18" font-family="Arial, Helvetica, sans-serif">PO-20260330-021</text>
-  <text x="574" y="548" fill="#203656" font-size="18" font-family="Arial, Helvetica, sans-serif">Purchase received into North Warehouse / A-01</text>
-  <rect x="1032" y="526" width="90" height="30" rx="15" fill="#E4F7EC"/>
-  <text x="1077" y="547" fill="#2C8558" font-size="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700">Done</text>
-
-  <text x="360" y="590" fill="#72829A" font-size="18" font-family="Arial, Helvetica, sans-serif">SO-20260330-017</text>
-  <text x="574" y="590" fill="#203656" font-size="18" font-family="Arial, Helvetica, sans-serif">Sales order posted with barcode tracked inventory</text>
-  <rect x="1032" y="568" width="90" height="30" rx="15" fill="#E4F7EC"/>
-  <text x="1077" y="589" fill="#2C8558" font-size="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700">Done</text>
-
-  <text x="360" y="632" fill="#72829A" font-size="18" font-family="Arial, Helvetica, sans-serif">ST-20260330-004</text>
-  <text x="574" y="632" fill="#203656" font-size="18" font-family="Arial, Helvetica, sans-serif">Stocktake adjusted counted quantity and wrote audit trail</text>
-  <rect x="1020" y="610" width="102" height="30" rx="15" fill="#FFF0D1"/>
-  <text x="1071" y="631" fill="#9A7513" font-size="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700">Audited</text>
+  <rect x="792" y="550" width="362" height="54" rx="18" fill="#FFFFFF"/>
+  <text x="818" y="583" fill="#1D365A" font-size="19" font-family="Arial, Helvetica, sans-serif" font-weight="700">Purchase, sales, returns, stocktake, audit</text>
 </svg>
