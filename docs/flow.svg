@@ -3,7 +3,7 @@
   <text x="76" y="92" fill="#183153" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="700">Core Module Flow</text>
   <text x="76" y="132" fill="#5F708A" font-size="22" font-family="Arial, Helvetica, sans-serif">The first release covers account control, item master, stock flow and reporting.</text>
   <rect x="76" y="192" width="234" height="120" rx="24" fill="#112543"/>
-  <text x="112" y="246" fill="#FFFFFF" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Auth & Roles</text>
+  <text x="112" y="246" fill="#FFFFFF" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">Auth &amp; Roles</text>
   <text x="112" y="284" fill="#D8E0EE" font-size="20" font-family="Arial, Helvetica, sans-serif">Login, reset password,</text>
   <text x="112" y="312" fill="#D8E0EE" font-size="20" font-family="Arial, Helvetica, sans-serif">forced change, fine-grained perms</text>
   <rect x="382" y="192" width="234" height="120" rx="24" fill="#FFF1EA"/>
@@ -27,7 +27,7 @@
   <text x="558" y="510" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">Counted quantity</text>
   <text x="558" y="540" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">Auto difference adjustment</text>
   <rect x="840" y="416" width="280" height="140" rx="24" fill="#FFFFFF" stroke="#E6ECF5" stroke-width="2"/>
-  <text x="878" y="470" fill="#183153" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Reports & Audit</text>
+  <text x="878" y="470" fill="#183153" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Reports &amp; Audit</text>
   <text x="878" y="510" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">CSV export</text>
   <text x="878" y="540" fill="#5F708A" font-size="21" font-family="Arial, Helvetica, sans-serif">Operation traceability</text>
   <path d="M310 252H382" stroke="#C6D2E4" stroke-width="8" stroke-linecap="round"/>
