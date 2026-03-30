@@ -1,2 +1,3 @@
 __pycache__/
 data/inventory.db
+.DS_Store

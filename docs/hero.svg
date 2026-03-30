@@ -1,0 +1,43 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" rx="28" fill="#F4F7FB"/>
+  <rect x="28" y="28" width="1224" height="664" rx="24" fill="#FFFFFF"/>
+  <rect x="28" y="28" width="230" height="664" rx="24" fill="#183153"/>
+  <rect x="28" y="28" width="1224" height="86" rx="24" fill="#112543"/>
+  <text x="68" y="82" fill="#FFFFFF" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">Yen IMS</text>
+  <rect x="72" y="162" width="142" height="52" rx="14" fill="#FF8450"/>
+  <text x="105" y="196" fill="#FFFFFF" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Dashboard</text>
+  <text x="72" y="276" fill="#D4DDEE" font-size="24" font-family="Arial, Helvetica, sans-serif">Products</text>
+  <text x="72" y="336" fill="#D4DDEE" font-size="24" font-family="Arial, Helvetica, sans-serif">Documents</text>
+  <text x="72" y="396" fill="#D4DDEE" font-size="24" font-family="Arial, Helvetica, sans-serif">Warehouses</text>
+  <text x="72" y="456" fill="#D4DDEE" font-size="24" font-family="Arial, Helvetica, sans-serif">Audit Logs</text>
+  <text x="953" y="82" fill="#FFFFFF" font-size="20" font-family="Arial, Helvetica, sans-serif">admin / 30 min idle timeout</text>
+  <text x="308" y="180" fill="#1B2B44" font-size="40" font-family="Arial, Helvetica, sans-serif" font-weight="700">Inventory Management System</text>
+  <text x="308" y="220" fill="#6B7A90" font-size="22" font-family="Arial, Helvetica, sans-serif">Products, documents, partners, stocktakes, audit and reports in one admin console.</text>
+  <rect x="308" y="262" width="202" height="118" rx="22" fill="#FFF1EA"/>
+  <rect x="530" y="262" width="202" height="118" rx="22" fill="#EEF5FF"/>
+  <rect x="752" y="262" width="202" height="118" rx="22" fill="#ECFBF3"/>
+  <rect x="974" y="262" width="202" height="118" rx="22" fill="#FFF7DA"/>
+  <text x="336" y="308" fill="#8A4B2F" font-size="20" font-family="Arial, Helvetica, sans-serif">Products</text>
+  <text x="336" y="350" fill="#1B2B44" font-size="38" font-family="Arial, Helvetica, sans-serif" font-weight="700">4</text>
+  <text x="558" y="308" fill="#37619A" font-size="20" font-family="Arial, Helvetica, sans-serif">Documents</text>
+  <text x="558" y="350" fill="#1B2B44" font-size="38" font-family="Arial, Helvetica, sans-serif" font-weight="700">4</text>
+  <text x="780" y="308" fill="#28724A" font-size="20" font-family="Arial, Helvetica, sans-serif">Warehouses</text>
+  <text x="780" y="350" fill="#1B2B44" font-size="38" font-family="Arial, Helvetica, sans-serif" font-weight="700">2</text>
+  <text x="1002" y="308" fill="#8A6A11" font-size="20" font-family="Arial, Helvetica, sans-serif">Low Stock</text>
+  <text x="1002" y="350" fill="#1B2B44" font-size="38" font-family="Arial, Helvetica, sans-serif" font-weight="700">3</text>
+  <rect x="308" y="414" width="868" height="224" rx="24" fill="#FFFFFF" stroke="#E6ECF5" stroke-width="2"/>
+  <text x="340" y="458" fill="#1B2B44" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Recent Document Flow</text>
+  <line x1="340" y1="490" x2="1146" y2="490" stroke="#E6ECF5" stroke-width="2"/>
+  <text x="340" y="532" fill="#6B7A90" font-size="18" font-family="Arial, Helvetica, sans-serif">PO-20260330-001</text>
+  <text x="570" y="532" fill="#1B2B44" font-size="18" font-family="Arial, Helvetica, sans-serif">Purchase / North Warehouse / Batch BATCH-2503A</text>
+  <rect x="1062" y="508" width="84" height="30" rx="15" fill="#E7F8EE"/>
+  <text x="1086" y="529" fill="#2A8B58" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Done</text>
+  <text x="340" y="578" fill="#6B7A90" font-size="18" font-family="Arial, Helvetica, sans-serif">SO-20260330-001</text>
+  <text x="570" y="578" fill="#1B2B44" font-size="18" font-family="Arial, Helvetica, sans-serif">Sales / Customer return-capable stock flow</text>
+  <rect x="1062" y="554" width="84" height="30" rx="15" fill="#E7F8EE"/>
+  <text x="1086" y="575" fill="#2A8B58" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Done</text>
+  <text x="340" y="624" fill="#6B7A90" font-size="18" font-family="Arial, Helvetica, sans-serif">ST-20260330-001</text>
+  <text x="570" y="624" fill="#1B2B44" font-size="18" font-family="Arial, Helvetica, sans-serif">Stocktake / Counted 15 / Auto adjustment posted to inventory</text>
+  <rect x="1062" y="600" width="84" height="30" rx="15" fill="#FFF2D8"/>
+  <text x="1081" y="621" fill="#8A6A11" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Audit</text>
+</svg>
