@@ -4,8 +4,8 @@
   <rect x="28" y="28" width="230" height="664" rx="24" fill="#183153"/>
   <rect x="28" y="28" width="1224" height="86" rx="24" fill="#112543"/>
   <text x="68" y="82" fill="#FFFFFF" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">Yen IMS</text>
-  <rect x="72" y="162" width="142" height="52" rx="14" fill="#FF8450"/>
-  <text x="105" y="196" fill="#FFFFFF" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Dashboard</text>
+  <rect x="72" y="162" width="150" height="52" rx="14" fill="#FF8450"/>
+  <text x="147" y="196" text-anchor="middle" fill="#FFFFFF" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700">Dashboard</text>
   <text x="72" y="276" fill="#D4DDEE" font-size="24" font-family="Arial, Helvetica, sans-serif">Products</text>
   <text x="72" y="336" fill="#D4DDEE" font-size="24" font-family="Arial, Helvetica, sans-serif">Documents</text>
   <text x="72" y="396" fill="#D4DDEE" font-size="24" font-family="Arial, Helvetica, sans-serif">Warehouses</text>
